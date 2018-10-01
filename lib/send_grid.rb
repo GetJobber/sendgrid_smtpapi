@@ -7,7 +7,8 @@ module SendGridSmtpApi
     base.class_eval do
       include InstanceMethods
       delegate :substitute, :uniq_args, :category, :add_filter_setting, :standard_smtp, :to => :sendgrid_header
-      alias_method_chain :mail, :sendgrid
+      alias_method :mail_without_sendgrid, :mail
+      alias_method :mail, :mail_with_sendgrid
       alias_method :sendgrid_header, :send_grid_header
     end
   end
